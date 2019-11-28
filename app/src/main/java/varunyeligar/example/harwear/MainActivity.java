@@ -52,7 +52,6 @@ public class MainActivity extends WearableActivity {
                 try {
                     InputStream inputStream = getAssets().open("comsnets_data.csv");
                     BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-                    int count = 0;
                     String line = "";
                     long start = System.currentTimeMillis();
                     while((line = br.readLine()) != null){
@@ -69,14 +68,10 @@ public class MainActivity extends WearableActivity {
                         float[][] output = new float[1][6];
                         interpreter.run(input_array,output);
 
-                        count++;
-
-                        //break;
                     }
 
                     long end = System.currentTimeMillis();
                     result.setText(end - start +"ms");
-                    //result.setText(count+"hello");
                     br.close();
                 } catch (IOException e) {
                     result.setText("not found");
